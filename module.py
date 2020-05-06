@@ -2,13 +2,15 @@ import twstock
 import requests
 twstock.__update_codes()
 
+#取得股名和及時股價
 def get_price(stock_id):
     info=twstock.realtime.get(stock_id)
     if info['success']:
         return (info['info']['name'],info['realtime']['latest_trade_price'])
     else:
         return (False,False)
-
+    
+#依最佳四點取得買賣建議
 def get_best(stock_id):
     stock=twstock.Stock(stock_id)
     bp=twstock.BestFourPoint(stock).best_four_point()
@@ -17,6 +19,7 @@ def get_best(stock_id):
     else:
         return (False,False)
     
+#從csv檔讀取'股票代號','期望買進價','期望賣出價'
 def get_setting():
     txt=input('text file name:')
     txt=txt +'.txt'
@@ -33,6 +36,7 @@ def get_setting():
     
     return res
 
+#IFTTT發送訊息到LINE
 def send_ifttt(v1,v2,v3):
     url=('https://maker.ifttt.com/trigger/toLINE/with/key/' +
          'mxYRhKKS3u9DvCAqR5rrrWr3glzMyg3QtWRpTQbi4nG' +
