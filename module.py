@@ -29,8 +29,9 @@ def get_setting():
             dlist=f.readlines()
             print('讀入:',dlist)
             for lst in dlist:
+                print(lst)
                 s=lst.split(',')
-                res.append(s[0].strip,float(s[1]),float(s[2]))
+                res.append([s[0].strip(),float(s[1]),float(s[2])])
     except:
         print(txt +'讀取錯誤')
     
