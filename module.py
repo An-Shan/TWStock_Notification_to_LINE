@@ -27,7 +27,6 @@ def get_setting():
     try:
         with open(txt) as f:
             dlist=f.readlines()
-            print('讀入:',dlist)
             for lst in dlist:
                 print(lst)
                 s=lst.split(',')
